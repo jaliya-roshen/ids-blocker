@@ -1,0 +1,38 @@
+<!-- <p>This is Just a Drilldown View</p> -->
+
+<div soho-busyindicator [activated]="isBusy" [blockUI]="true">
+    <div class="row">
+      <div class="twelve columns">
+        <div soho-tabs #processSohoTabs registerForEvents="activated">
+          <div soho-tab-list-container>
+            <ul soho-tab-list>
+              <li soho-tab *ngIf="contractsData"><a soho-tab-title tabId="tabs-normal-contracts">Contracts</a></li>
+              <li soho-tab *ngIf="opportunitiesData"><a soho-tab-title tabId="tabs-normal-opportunities">Opportunities</a></li>
+              <li soho-tab *ngIf="attachmentsData" selected="true"><a soho-tab-title tabId="tabs-normal-attachments">Attachments</a></li>
+            </ul>
+          </div>
+        </div>
+  
+        <div soho-tab-panel-container>
+          <div soho-tab-panel tabId="tabs-normal-contracts" *ngIf="contractsData">
+            <p>{{ contractsData }}</p>
+          </div>
+          <div soho-tab-panel tabId="tabs-normal-opportunities" *ngIf="opportunitiesData">
+            <p>{{ opportunitiesData }}</p>
+            <div class="field">
+              <label class="required" for="text-normal-opportunities">Text</label>
+              <input type="text" name="text-normal-opportunities" id="text-normal-opportunities" data-validate="required">
+            </div>
+            <div class="field">
+              <label class="required" for="tel-normal-opportunities">Telephone</label>
+              <input type="tel" name="tel-normal-opportunities" id="tel-normal-opportunities" data-validate="required" aria-required="true">
+            </div>
+          </div>
+          <div soho-tab-panel tabId="tabs-normal-attachments" *ngIf="attachmentsData">
+            <p>{{ attachmentsData }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

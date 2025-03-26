@@ -1,0 +1,57 @@
+<div class="row full-width scrollable">
+    <div class="twelve columns">
+        <ng-template #mainGrid>
+            <div class="toolbar">
+                <div class="title"></div>
+                <div class="buttonset searchbar">
+                    <button soho-menu-button icon="add"> Add OAuth Provider
+                    </button>
+                    <ul class="popupmenu">
+                        <li id="rpa-oauth-standard">
+                            <a data-action="STANDARD">Standard</a>
+                        </li>
+                        <li id="rpa-oauth-ms-graph">
+                            <a data-action="MSGRAPH">Microsoft Office 365</a>
+                        </li>
+                    </ul>
+                    <button id="rpa-jb-add" soho-button="tertiary" icon="add">New</button>
+                    <div class="separator"></div>
+                    <input soho-searchfield placeholder="Enter a keyword" id="rpa-jb-search" style="visibility: hidden;"
+                        name="rpa-jb-search" class="searchfield" />
+                    <div class="separator"></div>
+                    <button id="rpa-bots-refresh" soho-button="tertiary" icon="refresh" soho-tooltip
+                        [title]="refreshTooltipText" data-action="refresh">Refresh</button>
+                    <button soho-button="tertiary" icon="filter">
+                        <span>Filter</span>
+                    </button>
+                </div>
+            </div>
+            <div class="contextual-toolbar toolbar is-hidden">
+                <div class="title">Actions</div>
+                <div class="buttonset">
+
+                    <button id="rpa-prcs-deact" *ngIf="versionStatus !== 'deactivated'" soho-button="tertiary"
+                        icon="shut-down" (click)="deleteUser()">
+                        Delete
+                    </button>
+                </div>
+            </div>
+            <div soho-datagrid id="rpa-prcs-grid" *ngIf="datagridOptions" [gridOptions]="datagridOptions"
+                (selected)="onSelect($event.rows)"></div>
+        </ng-template>
+        <ng-container *ngIf="drilldownView; else mainGrid">
+            <!-- <p>Debug: drilldownView is {{ drilldownView }}</p> -->
+            <div class="breadcrumb">
+                <ol aria-label="breadcrumb">
+                    <li>
+                        <a id="rpa-bc-prcs-list" class="hyperlink" (click)="drilldownView=false;">Back To Main Grid</a>
+                    </li>
+                    <li class="current">
+                        <a class="hyperlink">{{selectedRow?.name}}</a>
+                    </li>
+                </ol>
+            </div>
+            <app-dilldown></app-dilldown>
+        </ng-container>
+    </div>
+</div>
