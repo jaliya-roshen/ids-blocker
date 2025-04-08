@@ -13,7 +13,8 @@
       <div soho-tab-panel-container>
          <div soho-tab-panel tabId="tabs-normal-contracts" *ngIf="contractsData">
             <!-- DataGrid will be displayed here -->
-            <soho-datagrid [options]="datagridOptions" (selected)="onSelect($event)"></soho-datagrid>
+            <div soho-datagrid id="rpa-grid" *ngIf="datagridOptions" [gridOptions]="datagridOptions"
+                (selected)="onSelect($event.rows)"></div>
          </div>
          <div soho-tab-panel tabId="tabs-normal-opportunities" *ngIf="opportunitiesData">
             <p>{{ opportunitiesData }}</p>
