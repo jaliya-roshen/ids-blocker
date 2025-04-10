@@ -51,9 +51,14 @@ export class DilldownComponent implements OnInit, AfterViewInit {
       console.error('Error fetching data:', error);
     } finally {
       this.isBusy = false;
+      //Give Angular time to render the data grid
       setTimeout(() => {
-        this.reinitializeTabs();
-      });
+        if (this.datagrid) {
+          console.log('Datagrid is now fully initialized: ', this.datagrid);
+        } else {
+          console.warn('Datagrid is STILL not fully initialized);
+        }
+      },0);
     }
   }
 
